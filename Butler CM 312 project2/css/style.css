@@ -1,0 +1,831 @@
+:root {
+    --primary-color: #181818;
+    --secondary-color: #212121;
+    --text-color: #FAF9F6;
+    --accent-color: #303030;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 18px;
+    color: var(--text-color);
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-color: var(--primary-color);
+}
+
+footer {
+    height: 100px;
+    background-color: var(--secondary-color);
+    padding-left: 50px;
+    padding-top: 10px;
+    clear: both;
+}
+
+footer a {color: white;}
+
+.section-header {
+    padding: 1em;
+    width: auto;
+    height: 60px;
+    position: relative;
+    margin: auto;
+    width: 85%;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.section-header a{
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+
+/*Navigation bar CSS*/
+nav {
+    height: 60px;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.links-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*justify-content: flex-end;*/
+    text-transform: uppercase;
+}
+
+nav a {
+    height: 100%;
+    padding: 0 20px 0;
+    margin: 1%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+nav a:hover {
+    background-color: var(--accent-color);
+}
+
+nav .home-link {
+    margin-right: auto;
+}
+
+.home-link img {
+    width: 120px;
+}
+
+.home-link:hover {
+    background-color: transparent;
+}
+
+nav svg {
+    fill: var(--text-color);
+}
+
+#sidebar-active {
+    display: none;
+}
+
+.open-menu,
+.close-menu {
+    display: none;
+}
+
+
+/*Website responsivity*/
+@media only screen and (max-width: 600px) {
+    .box {
+        width: 98%;
+        height: auto;
+        margin: 1%;
+        float: none;
+    }
+
+    figure {
+        width: 100%;
+        height: auto;
+    }
+
+    .content,
+    aside {
+        max-width: 96%;
+        margin: 1%;
+        padding: 1%;
+        float: none;
+    }
+
+    h1 {
+        font-size: 1.75em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.25em;
+    }
+
+    h4 {
+        font-size: 1.12em;
+    }
+
+    header,
+    footer,
+    nav {
+        padding-left: 5%;
+        width: 95%;
+    }
+
+    .links-container {
+        flex-direction: column;
+        align-items: flex-start;
+
+        position: fixed;
+        top: 0;
+        right: -100%;
+        z-index: 10;
+        width: 90%;
+        background-color: var(--secondary-color);
+        box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
+        transition: 0.75s ease-out;
+    }
+
+    nav a {
+        box-sizing: border-box;
+        height: auto;
+        width: 100%;
+        padding: 20px 30px;
+        justify-content: flex-start;
+    }
+
+    .open-menu,
+    .close-menu {
+        padding: 20px;
+        display: block;
+    }
+
+    #sidebar-active:checked~.links-container {
+        right: 0;
+    }
+
+    #sidebar-active:checked~#overlay {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9;
+    }
+}
+
+
+/*slideshow CSS*/
+.slideshow-section {
+    width: 100%;
+    height: 100%;
+}
+
+.slideshow-section .slide-container {
+    max-width: 1200px;
+    position: relative;
+    margin: auto;
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    box-shadow: 0 10px 50px black;
+}
+
+.slide-container .slide-content {
+    display: flex;
+    align-items: center;
+    display: none;
+}
+
+.slide-content .slide-image {
+    width: 500px;
+    margin-right: 20px;
+}
+
+.slide-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+.slide-text {
+    margin-top: 0px;
+    margin-left: 100px;
+    margin-bottom: 150px;
+    flex: 1;
+}
+
+.slide-text .name {font-size: 24px; font-weight: normal;}
+
+.slide-text .title {font-size: 32px; font-weight: bold;}
+
+.slide-text .details ul{
+    list-style-type: none;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 40px;
+}
+
+
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 7.5px;
+    width: 7.5px;
+    margin: 0 2px;
+    margin-bottom: 10%;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.horiz-container{
+    background: var(--secondary-color);
+    position: relative;
+    max-width: 1200px;
+    width: 90%;
+    height: 500px;
+    margin: auto;
+    margin-bottom: 10%;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px black;
+}
+
+.inner {
+    display: flex;
+}
+
+.inner .content{
+    list-style-type: decimal;
+    columns: 2;
+    column-gap: 55px;
+    width: 90%;
+    margin-left: 48px;
+    padding: 16px 24px;
+    padding-top: 72px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.content li{
+    margin-bottom: 48px;
+}
+
+.inner .img{
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+.img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.horiz-container a {
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    background-color: var(--secondary-color);
+    box-shadow: 0 10px 50px -50px black;
+    padding: 4px 16px;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-left: 540px;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+
+/*About CSS*/
+.about-section {
+    width: 100%;
+    height: 100%;
+}
+
+.about-container {
+    width: 90%;
+    display: block;
+    margin: auto;
+    padding-top: 100px;
+}
+
+.about-content {
+    float: left;
+    width: 55%;
+}
+
+.about-img {
+    float: right;
+}
+
+.about-img img {
+    width: 500px;
+    height: 500px;
+}
+
+.about-content .title {
+    text-transform: capitalize;
+    font-size: 32px;
+}
+
+.about-content .subtitle h3{
+    font-size: 24px;
+    color: lightgray;
+    margin-top: 20px;
+}
+
+.about-content .text p {
+    font-size: 18px;
+    margin-top: 10px;
+    line-height: 1.5em;
+}
+
+.content-image {
+    float: right;
+    width: 40%;
+}
+
+.content-image img {
+    width: 75%;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+/*Tracks of the Month CSS*/
+.monthly-section {
+    width: 100%;
+    height: 100%;
+}
+
+.monthly-section .text-container {
+    width: 100%;
+    display: block;
+    margin: auto;
+    padding-top: 100px;
+}
+
+.text-container .content {
+    display: inherit;
+}
+
+.content .title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.content .text {
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    margin: 0px 400px 0px;
+    margin-top: 15px;
+}
+
+.social {
+    float: right; 
+    margin-right: 30px;
+}
+
+.monthly-section .card-container {
+    width: 600px;
+    height: auto;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    box-shadow: 0 10px 50px black;
+}
+
+.card-container .card-content {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 20px;
+}
+
+.card-content:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.card-content .card-image {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.card-text {
+    margin-left: 50px;
+}
+
+.card-text .name {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.card-text .title {
+    font-weight: bold;
+}
+
+.card-text .details ul{
+    list-style-type: none;
+    padding-left: 5px;
+    font-weight: normal;
+}
+
+
+/*Discover CSS*/
+.discover-section {
+    width: 100%;
+    height: 100%;
+}
+
+.discover-section .text-container {
+    width: 100%;
+    display: block;
+    margin: auto;
+    padding-top: 100px;
+}
+
+.text-container .content {
+    display: inherit;
+}
+
+.content .title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* Slideshow container */
+.discover-section .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+  
+  /* Hide the images by default */
+  .discover-section .slideshow-container .slide {
+    display: none;
+  }
+
+  .discover-section .dot {
+    cursor: pointer;
+    height: 7.5px;
+    width: 7.5px;
+    margin: 20px 2px;
+    margin-bottom: 10%;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+  
+  /* Next & previous buttons */
+  .discover-section .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .discover-section .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .discover-section .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+    /*Reviews CSS*/ 
+.review-section {
+    width: 100%;
+    height: 100%;
+}
+
+.review-section .text-container {
+    width: 100%;
+    display: block;
+    margin: auto;
+    padding-top: 100px;
+}
+
+.text-container .content {
+    display: inherit;
+}
+
+.content .title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.content .text {
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    margin: 0px 400px 0px;
+    margin-top: 15px;
+}
+
+.review-section .review-container {
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    box-shadow: 0 10px 50px black;
+}
+
+.review-container .review-content {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 20px;
+}
+
+.review-content:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.review-content .review-image {
+    width: 250px;
+    margin-right: 20px;
+}
+
+.review-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.review-text {
+    margin-left: 50px;
+}
+
+.review-text .name {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.review-text .title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.review-text .details ul{
+    list-style-type: none;
+    padding-left: 5px;
+    font-weight: normal;
+}
+
+.rev-text-aside{
+    padding-left: 300px;
+}
+
+.rev-text-aside .rating{
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.rev-text-aside .score{
+    font-size: 32px;
+}
+
+/*my-picks css*/
+.fav-section {
+    width: 100%;
+    height: 100%;
+}
+.fav-section .text-container {
+    width: 100%;
+    display: block;
+    margin: auto;
+    margin-bottom: 100px;
+    padding-top: 100px;
+}
+
+.content .title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.content .text {
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    margin: 0px 400px 0px;
+    margin-top: 15px;
+}
+
+.content .text .a {
+    height: 100%;
+    padding: 0 20px 0;
+    margin: 1%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.content .text .a:hover {
+    background-color: var(--accent-color);
+}
+
+.fav-cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-bottom: 100px;
+}
+
+.fav-container{
+    background: var(--secondary-color);
+    position: relative;
+    max-width: 400px;
+    width: 80%;
+    height: 650px;
+    margin: auto;
+    margin-bottom: 10%;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px black;
+}
+
+.fav-container .fav-image {
+    width: 380px;
+    margin: auto;
+}
+
+.fav-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.fav-{
+    list-style-type: decimal;
+    columns: 2;
+    column-gap: 55px;
+    width: 90%;
+    margin-left: 48px;
+    padding: 16px 24px;
+    padding-top: 72px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.fav-content{
+    margin: auto;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.fav-content .type {font-size: 16px; font-weight: normal;}
+
+.fav-content .name {font-size: 24px; font-weight: bold;}
+
+.fav-content .details ul{
+    list-style-type: none;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 40px;
+}
+
+/*About Accordion*/
+.about-accordion {
+	width:600px; 
+	height: auto; 
+	float: left;
+	margin: 15px;
+    padding: 50px;
+}
+
+.accordion {
+	background-color: var(--secondary-color);
+	color: var(--text-color);
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	text-align: left;
+	border: none;
+	outline: none;
+	transition: 0.4s;
+	font-size: 1em;
+}
+  
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+	background-color: var(--accent-color);
+}
+  
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+	padding: 0 18px;
+	background-color: var(--secondary-color);
+	display: none;
+	overflow: hidden;
+}
+
+.accordion:after {
+	content: '\002B'; /* Unicode character for "plus" sign (+) */
+	font-size: 18px;
+	color: var(--text-color);
+	float: right;
+	margin-left: 5px;
+}
+  
+.active:after {
+	content: "\2212"; /* Unicode character for "minus" sign (-) */
+}
